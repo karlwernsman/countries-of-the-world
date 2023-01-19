@@ -5,11 +5,11 @@ import Country from '../Country/Country.js';
 import Controls from '../Controls/Controls.js';
 
 export default function Main() {
-  const { countries } = useCountries();
+  const { filteredCountries, setContinents, countries } = useCountries();
   return (
     <main>
-      <Controls />
-      {countries.map((country) => (
+      <Controls {...{ setContinents, countries }} />
+      {filteredCountries.map((country) => (
         <Country key={country.id} {...country} />
       ))}
     </main>

@@ -4,8 +4,8 @@ import { getCountries } from '../services/countries.js';
 
 export function useCountries() {
   const [countries, setCountries] = useState([]);
+  const [continents, setContinents] = useState('all');
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,5 +18,9 @@ export function useCountries() {
     fetchData();
   }, []);
 
-  return { countries, error, setCountries };
+  const filteredCountries = countries.filter(
+    (country) => country.continent === continents || continents === 'all'
+  );
+
+  return { countries, error, setContinents, filteredCountries };
 }
